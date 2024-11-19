@@ -5,9 +5,6 @@ namespace TDDCommunication.Tests
 {
     public class Tests
     {
-
-
-        
         [TestCase(new int[] { 3, 1, 2 }, 2, TestName = "Test with 3 numbers")]
         [TestCase(new int[] { 3, 2 }, 0, TestName = "Test with 2 numbers")]
         [TestCase(new int[] { 3 }, 0, TestName = "Test with 1 number")]
@@ -60,6 +57,7 @@ namespace TDDCommunication.Tests
         }
 
         // Happy-path cases
+        [TestCase(new Rating[] { }, Rating.NEUTRAL)]
         [TestCase(new Rating[] { Rating.LIKE }, Rating.LIKE)]
         [TestCase(new Rating[] { Rating.DISLIKE }, Rating.DISLIKE)]
         [TestCase(new Rating[] { Rating.DISLIKE, Rating.LIKE }, Rating.NEUTRAL)]
@@ -88,6 +86,7 @@ namespace TDDCommunication.Tests
 
         [TestCase("northcoders", "abegupbqref")]
         [TestCase("abegupbqref", "northcoders")]
+        [TestCase("AbeguPbqrEf", "NorthCodeRs")]
         [TestCase("I'm sure glad nobody can read my secret ROT13 code.", "V'z fher tynq abobql pna ernq zl frperg EBG13 pbqr.")]
         public void GetCaesarCipherTest(string inputString, string expectedOutput)
         {
@@ -100,8 +99,6 @@ namespace TDDCommunication.Tests
             // Assert
             actualOutput.Should().Be(expectedOutput);
         }
-
-
 
     }
 }

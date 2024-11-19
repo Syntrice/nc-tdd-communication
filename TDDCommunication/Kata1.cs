@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,10 +71,43 @@ namespace TDDCommunication
 
         public string GetCaesarCipher(string inputString)
         {
-            //int asciiStart = (int)'a
-            //inputString.Select(c => ((int)c - asciiStart) % 13);
+            StringBuilder stringBuilder = new StringBuilder();
+            
+            foreach (char c in inputString)
+            {
+                
+                if (!Char.IsLetter(c))
+                {
+                    stringBuilder.Append(c); 
+                    continue;
+                }
 
-            return inputString;
+                int asciiStart;
+                if (Char.IsUpper(c))
+                {
+                    asciiStart = (int)'A';
+                }
+                else
+                {
+                    asciiStart = (int)'a';
+                }
+
+                // Convert character c to int. To get alphabetic index, subtract asciiStart.
+                int cInt = (int)c - asciiStart; // a = 0, b = 1
+
+                // Move character forward by 13 places
+                cInt = cInt + 13;
+
+                // Wrap around back to 'a' after letter z (26th letter)
+                cInt = cInt % 26;
+
+                // convert cInt back into a char 
+                char resultChar = (char)(cInt + asciiStart);
+
+                stringBuilder.Append(resultChar);
+            }
+
+            return stringBuilder.ToString();
         }
 
     }
