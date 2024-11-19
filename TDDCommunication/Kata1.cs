@@ -44,5 +44,29 @@ namespace TDDCommunication
 
             return sum;
         }
+
+        public Rating GetFinalRating(List<Rating> studentRatings)
+        {
+            int dislikeCount = studentRatings.Where(item => item == Rating.DISLIKE).Count();
+            int likeCount = studentRatings.Where(item => item == Rating.LIKE).Count();
+
+            if (dislikeCount % 2 == 0) dislikeCount = 0;
+            if (likeCount % 2 == 0) likeCount = 0;
+
+            Rating finalRating = Rating.NEUTRAL;
+
+            if (dislikeCount > likeCount)
+            {
+                finalRating = Rating.DISLIKE;
+            }
+            else if (likeCount > dislikeCount) 
+            {
+                 finalRating = Rating.LIKE;
+            }
+           
+            return finalRating;
+
+        }
+
     }
 }
