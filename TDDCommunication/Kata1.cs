@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,6 +109,38 @@ namespace TDDCommunication
             }
 
             return stringBuilder.ToString();
+        }
+        public string CatVsMouse(string inputString, int catSpeed, int mouseSpeed)
+        {
+            string output = "Cheese Party!";
+            if (mouseSpeed == 0 && catSpeed > 0)
+                return "No Cheese";
+
+            if (catSpeed == 0 && mouseSpeed > 0)
+                return "Cheese";
+
+            int catIndex = inputString.IndexOf('K');
+            int mouseIndex = inputString.IndexOf('M');
+            int cheeseIndex = inputString.IndexOf('C');
+
+           // int catMouseDistance = mouseIndex - catIndex;
+            int catCheeseDistance = cheeseIndex - catIndex;
+            int mouseCheeseDistance = cheeseIndex - mouseIndex;
+
+            double catToReach = catCheeseDistance/ catSpeed;
+            double mouseToReach = mouseCheeseDistance/ mouseSpeed;
+
+            if (catToReach < mouseToReach)
+            {
+                output = "No Cheese";
+
+            }
+            else if (mouseToReach < catToReach)
+            {
+               output = "Cheese";
+            }
+                
+            return output;
         }
 
     }

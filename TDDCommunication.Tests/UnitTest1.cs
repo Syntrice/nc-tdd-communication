@@ -100,5 +100,26 @@ namespace TDDCommunication.Tests
             actualOutput.Should().Be(expectedOutput);
         }
 
+        [TestCase("---K-----M---C--", 6, 0,"No Cheese")]
+        [TestCase("---K-----M---C--", 0, 6 , "Cheese")]
+        [TestCase("---K-----M---C---", 1, 1, "Cheese")]
+        [TestCase("---K-----M---C---", 3, 1, "No Cheese")]
+        [TestCase("---K---M---C--", 2, 1, "Cheese Party!")]
+
+
+        public void CatVsMouseTest(string inputString, int catSpeed, int mouseSpeed, string expectedOutput)
+        {
+            // Arrange
+            Kata1 kata1 = new Kata1();
+
+            // Act
+            string actualOutput = kata1.CatVsMouse(inputString,catSpeed, mouseSpeed);
+
+            // Assert
+            actualOutput.Should().Be(expectedOutput);
+        }
+
+
+
     }
 }
