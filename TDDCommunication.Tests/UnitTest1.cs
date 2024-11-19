@@ -100,13 +100,12 @@ namespace TDDCommunication.Tests
             actualOutput.Should().Be(expectedOutput);
         }
 
+        // happy-path cases
         [TestCase("---K-----M---C--", 6, 0,"No Cheese")]
         [TestCase("---K-----M---C--", 0, 6 , "Cheese")]
         [TestCase("---K-----M---C---", 1, 1, "Cheese")]
         [TestCase("---K-----M---C---", 3, 1, "No Cheese")]
         [TestCase("---K---M---C--", 2, 1, "Cheese Party!")]
-
-
         public void CatVsMouseTest(string inputString, int catSpeed, int mouseSpeed, string expectedOutput)
         {
             // Arrange
@@ -119,6 +118,29 @@ namespace TDDCommunication.Tests
             actualOutput.Should().Be(expectedOutput);
         }
 
+
+        // edge cases
+        // (randomized order)
+        [TestCase("---M-----K---C---", 1, 1, "No Cheese")]
+        [TestCase("---C-----M---K---", 1, 1, "Nothing Happened")]
+        [TestCase("---M-----K---C---", -1, -1, "Nothing Happened")]
+
+        //// negative speed
+        //[TestCase("---K-----M---C--", -1, 1, "Cheese")]
+        //[TestCase("---K-----M---C--", 1, -1, "No Cheese")]
+        //[TestCase("---K-----M---C--", -1, -1, "Nothing Happened")]
+
+        public void CatVsMouseEdgeTest(string inputString, int catSpeed, int mouseSpeed, string expectedOutput)
+        {
+            // Arrange
+            Kata1 kata1 = new Kata1();
+
+            // Act
+            string actualOutput = kata1.CatVsMouse(inputString, catSpeed, mouseSpeed);
+
+            // Assert
+            actualOutput.Should().Be(expectedOutput);
+        }
 
 
     }

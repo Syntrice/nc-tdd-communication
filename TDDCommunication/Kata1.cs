@@ -112,36 +112,60 @@ namespace TDDCommunication
         }
         public string CatVsMouse(string inputString, int catSpeed, int mouseSpeed)
         {
-            string output = "Cheese Party!";
-            if (mouseSpeed == 0 && catSpeed > 0)
-                return "No Cheese";
 
-            if (catSpeed == 0 && mouseSpeed > 0)
-                return "Cheese";
-
+            // get indices of all locations
             int catIndex = inputString.IndexOf('K');
             int mouseIndex = inputString.IndexOf('M');
             int cheeseIndex = inputString.IndexOf('C');
 
-           // int catMouseDistance = mouseIndex - catIndex;
+            int catMouseDistance = mouseIndex - catIndex;
             int catCheeseDistance = cheeseIndex - catIndex;
             int mouseCheeseDistance = cheeseIndex - mouseIndex;
 
-            double catToReach = catCheeseDistance/ catSpeed;
-            double mouseToReach = mouseCheeseDistance/ mouseSpeed;
-
-            if (catToReach < mouseToReach)
+            while ((mouseIndex >= cheeseIndex && mouseSpeed > 0) || (catIndex >= cheeseIndex && mouseSpeed > 0))
             {
-                output = "No Cheese";
+                mouseIndex += mouseSpeed;
+                catIndex += catSpeed;
+            }
 
-            }
-            else if (mouseToReach < catToReach)
-            {
-               output = "Cheese";
-            }
-                
-            return output;
+            return "";
         }
+
+        //string output = "Cheese Party!";
+        //if (mouseSpeed == 0 && catSpeed > 0)
+        //    return "No Cheese";
+
+        //if (catSpeed == 0 && mouseSpeed > 0)
+        //    return "Cheese";
+
+        //int catIndex = inputString.IndexOf('K');
+        //int mouseIndex = inputString.IndexOf('M');
+        //int cheeseIndex = inputString.IndexOf('C');
+
+        //if (catSpeed > 0 && mouseSpeed > 0)
+        //{
+        //    if (cheeseIndex < catIndex && cheeseIndex < mouseIndex)
+        //    {
+        //        return "Nothing Happened";
+        //    }
+        //}
+
+        //// int catMouseDistance = mouseIndex - catIndex;
+        //int catCheeseDistance = cheeseIndex - catIndex;
+        //int mouseCheeseDistance = cheeseIndex - mouseIndex;
+
+        //double catToReach = catCheeseDistance/ catSpeed;
+        //double mouseToReach = mouseCheeseDistance/ mouseSpeed;
+
+        //if (catToReach < mouseToReach)
+        //{
+        //    output = "No Cheese";
+
+        //}
+        //else if (mouseToReach < catToReach)
+        //{
+        //   output = "Cheese";
+        //}
 
     }
 }
