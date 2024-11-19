@@ -68,5 +68,13 @@ namespace TDDCommunication
 
         }
 
+        public string GetCaesarCipher(string inputString)
+        {
+            //int asciiStart = (int)'a
+            //inputString.Select(c => ((int)c - asciiStart) % 13);
+
+            return inputString;
+        }
+
     }
 }

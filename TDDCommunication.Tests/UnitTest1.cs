@@ -86,6 +86,22 @@ namespace TDDCommunication.Tests
         }
 
 
+        [TestCase("northcoders", "abegupbqref")]
+        [TestCase("abegupbqref", "northcoders")]
+        [TestCase("I'm sure glad nobody can read my secret ROT13 code.", "V'z fher tynq abobql pna ernq zl frperg EBG13 pbqr.")]
+        public void GetCaesarCipherTest(string inputString, string expectedOutput)
+        {
+            // Arrange
+            Kata1 kata1 = new Kata1();
+
+            // Act
+            string actualOutput = kata1.GetCaesarCipher(inputString);
+
+            // Assert
+            actualOutput.Should().Be(expectedOutput);
+        }
+
+
 
     }
 }
